@@ -39,33 +39,33 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebAddressbookTests.ContactHelper" Collapsed="true">
-    <Position X="10" Y="3.5" Width="1.5" />
+    <Position X="6" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABAAAAACAAEAABAABAAAAAAAgAAAAAAAgCAAAAAAAA=</HashCode>
       <FileName>applicationmanager\ContactHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAddressbookTests.GroupHelper" Collapsed="true">
-    <Position X="9.5" Y="2.25" Width="1.5" />
+    <Position X="5.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAABAAAAAAAAAAAAAAAAhkAAAAAAAAABAAAA=</HashCode>
       <FileName>applicationmanager\GroupHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAddressbookTests.LoginHelper" Collapsed="true">
-    <Position X="10" Y="5.5" Width="1.5" />
+    <Position X="6" Y="6" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
       <FileName>applicationmanager\LoginHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WebAddressbookTests.NavigationHelper" Collapsed="true">
-    <Position X="10.25" Y="4.5" Width="1.25" />
+    <Position X="6.25" Y="4.75" Width="1.25" />
     <InheritanceLine Type="WebAddressbookTests.HelperBase" ManuallyRouted="true" FixedToPoint="true">
       <Path>
-        <Point X="13.75" Y="4.312" />
-        <Point X="13.75" Y="4.75" />
-        <Point X="11.5" Y="4.75" />
+        <Point X="9.75" Y="4.312" />
+        <Point X="9.75" Y="5" />
+        <Point X="7.5" Y="5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>
@@ -74,7 +74,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="WebAddressbookTests.HelperBase" Collapsed="true">
-    <Position X="13" Y="3.75" Width="1.5" />
+    <Position X="9" Y="3.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>applicationmanager\HelperBase.cs</FileName>
@@ -87,9 +87,9 @@
       <FileName>applicationmanager\ApplicationManager.cs</FileName>
     </TypeIdentifier>
     <ShowAsAssociation>
-      <Field Name="groupHelper" />
       <Field Name="loginHelper" />
       <Field Name="navigationHelper" />
+      <Field Name="groupHelper" />
       <Field Name="contactHelper" />
     </ShowAsAssociation>
   </Class>

@@ -12,12 +12,7 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            applicationManager.Navigator.GoToHomePage();
-            applicationManager.Auth.Login(new AccountData("admin", "secret"));
-            applicationManager.Navigator.GoToGroupsPage();
-            applicationManager.Groups.SelectGroup(1);
-            applicationManager.Groups.RemoveGroup();
-            applicationManager.Groups.ReturnsToGroupsPage();
+            applicationManager.Groups.Remove(1);
         }
     }
 }
