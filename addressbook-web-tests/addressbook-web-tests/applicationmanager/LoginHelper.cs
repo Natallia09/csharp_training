@@ -22,7 +22,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("user")).SendKeys(account.Username);
             driver.FindElement(By.Name("pass")).Clear();
             driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.CssSelector("input[type=\"submit\"]")).Click();
+            driver.FindElement(By.CssSelector("input[type='submit']")).Click();
         }
     }
 }

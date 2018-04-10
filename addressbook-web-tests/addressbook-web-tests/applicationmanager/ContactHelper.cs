@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
@@ -13,7 +11,6 @@ namespace WebAddressbookTests
 {
     public class ContactHelper : HelperBase
     {
-        private bool acceptNextAlert;
 
         public ContactHelper(ApplicationManager manager) 
             : base(manager)
@@ -29,10 +26,21 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper Modify(int p, ContactData newData)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(p);
+            InitContactModification();
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnsToContactsPage();
+            return this;
+        }
+
         public ContactHelper Remove(int p)
         {
             manager.Navigator.GoToContactsPage();
-            SelectContact(1);
+            SelectContact(p);
             RemoveContact();
             ReturnsToContactsPage();
             return this;
@@ -104,7 +112,7 @@ namespace WebAddressbookTests
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
-            Assert.IsTrue(Regex.IsMatch(CloseAlertAndGetItsText(), "^Delete 1 addresses[\\s\\S]$"));
+            driver.SwitchTo().Alert().Accept();
             return this;
         }
 
@@ -114,26 +122,16 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public string CloseAlertAndGetItsText()
+        public ContactHelper InitContactModification()
         {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-                {
-                    alert.Accept();
-                }
-                else
-                {
-                    alert.Dismiss();
-                }
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
+            driver.FindElement(By.CssSelector("img[title='Edit']")).Click();
+            return this;
+        }
+
+        public ContactHelper SubmitContactModification()
+        {
+            driver.FindElement(By.Name("update")).Click();
+            return this;
         }
     }
 }

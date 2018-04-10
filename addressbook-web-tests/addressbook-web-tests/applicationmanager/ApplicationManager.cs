@@ -15,7 +15,6 @@ namespace WebAddressbookTests
         protected IWebDriver driver;
         private StringBuilder verificationErrors;
         protected string baseURL;
-        protected bool acceptNextAlert = true;
 
         protected LoginHelper loginHelper;
         protected NavigationHelper navigationHelper;
