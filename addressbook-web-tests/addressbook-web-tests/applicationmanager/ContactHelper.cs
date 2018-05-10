@@ -54,46 +54,26 @@ namespace WebAddressbookTests
 
         public ContactHelper FillContactForm(ContactData contact)
         {
-            driver.FindElement(By.Name("firstname")).Clear();
-            driver.FindElement(By.Name("firstname")).SendKeys(contact.Userfirstname);
-            driver.FindElement(By.Name("middlename")).Clear();
-            driver.FindElement(By.Name("middlename")).SendKeys(contact.Usermiddlename);
-            driver.FindElement(By.Name("lastname")).Clear();
-            driver.FindElement(By.Name("lastname")).SendKeys(contact.Userlastname);
-            driver.FindElement(By.Name("nickname")).Clear();
-            driver.FindElement(By.Name("nickname")).SendKeys(contact.Usernickname);
-            driver.FindElement(By.Name("title")).Clear();
-            driver.FindElement(By.Name("title")).SendKeys(contact.Usertitle);
-            driver.FindElement(By.Name("company")).Clear();
-            driver.FindElement(By.Name("company")).SendKeys(contact.Usercompany);
-            driver.FindElement(By.Name("address")).Clear();
-            driver.FindElement(By.Name("address")).SendKeys(contact.Useraddress);
-            driver.FindElement(By.Name("home")).Clear();
-            driver.FindElement(By.Name("home")).SendKeys(contact.Userhome);
-            driver.FindElement(By.Name("mobile")).Clear();
-            driver.FindElement(By.Name("mobile")).SendKeys(contact.Usermobile);
-            driver.FindElement(By.Name("work")).Clear();
-            driver.FindElement(By.Name("work")).SendKeys(contact.Userwork);
-            driver.FindElement(By.Name("fax")).Clear();
-            driver.FindElement(By.Name("fax")).SendKeys(contact.Userfax);
-            driver.FindElement(By.Name("email")).Clear();
-            driver.FindElement(By.Name("email")).SendKeys(contact.Useremail);
-            driver.FindElement(By.Name("email2")).Clear();
-            driver.FindElement(By.Name("email2")).SendKeys(contact.Useremail2);
-            driver.FindElement(By.Name("email3")).Clear();
-            driver.FindElement(By.Name("email3")).SendKeys(contact.Useremail3);
-            driver.FindElement(By.Name("homepage")).Clear();
-            driver.FindElement(By.Name("homepage")).SendKeys(contact.Userhomepage);
-            driver.FindElement(By.Name("byear")).Clear();
-            driver.FindElement(By.Name("byear")).SendKeys(contact.Userbyear);
-            driver.FindElement(By.Name("ayear")).Clear();
-            driver.FindElement(By.Name("ayear")).SendKeys(contact.Userayear);
-            driver.FindElement(By.Name("address2")).Clear();
-            driver.FindElement(By.Name("address2")).SendKeys(contact.Useraddress2);
-            driver.FindElement(By.Name("phone2")).Clear();
-            driver.FindElement(By.Name("phone2")).SendKeys(contact.Userphone2);
-            driver.FindElement(By.Name("notes")).Clear();
-            driver.FindElement(By.Name("notes")).SendKeys(contact.Usernotes);
+            Type(By.Name("firstname"), contact.Userfirstname);
+            Type(By.Name("middlename"), contact.Usermiddlename);
+            Type(By.Name("lastname"), contact.Userlastname);
+            Type(By.Name("nickname"), contact.Usernickname);
+            Type(By.Name("title"), contact.Usertitle);
+            Type(By.Name("company"), contact.Usercompany);
+            Type(By.Name("address"), contact.Useraddress);
+            Type(By.Name("home"), contact.Userhome);
+            Type(By.Name("mobile"), contact.Usermobile);
+            Type(By.Name("work"), contact.Userwork);
+            Type(By.Name("fax"), contact.Userfax);
+            Type(By.Name("email"), contact.Useremail);
+            Type(By.Name("email2"), contact.Useremail2);
+            Type(By.Name("email3"), contact.Useremail3);
+            Type(By.Name("homepage"), contact.Userhomepage);
+            Type(By.Name("byear"), contact.Userbyear);
+            Type(By.Name("ayear"), contact.Userayear);
+            Type(By.Name("address2"), contact.Useraddress2);
+            Type(By.Name("phone2"), contact.Userphone2);
+            Type(By.Name("notes"), contact.Usernotes);
             return this;
         }
 
