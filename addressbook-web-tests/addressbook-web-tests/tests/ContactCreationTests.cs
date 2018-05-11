@@ -12,7 +12,7 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            ContactData contact = new ContactData("qqq", "www");
+            ContactData contact = new ContactData("UFN_new", "ULN_new");
 
             applicationManager.Contacts.Create(contact);
         }
