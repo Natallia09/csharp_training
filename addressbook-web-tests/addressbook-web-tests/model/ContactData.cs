@@ -8,31 +8,10 @@ namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        private string userfirstname;
-        private string usermiddlename = "";
-        private string userlastname;
-        private string usernickname = "";
-        private string usertitle = "";
-        private string usercompany = "";
-        private string useraddress = "";
-        private string userhome = "";
-        private string usermobile = "";
-        private string userwork = "";
-        private string userfax = "";
-        private string useremail = "";
-        private string useremail2 = "";
-        private string useremail3 = "";
-        private string userhomepage = "";
-        private string userbyear = "";
-        private string userayear = "";
-        private string useraddress2 = "";
-        private string userphone2 = "";
-        private string usernotes = "";
-
         public ContactData(string userlastname, string userfirstname)
         {
-            this.userfirstname = userfirstname;
-            this.userlastname = userlastname;
+            Userfirstname = userfirstname;
+            Userlastname = userlastname;
         }
 
         public bool Equals(ContactData other)
@@ -73,244 +52,46 @@ namespace WebAddressbookTests
             return Userlastname.CompareTo(other.Userlastname);
         }
 
-        public string Userfirstname
-        {
-            get
-            {
-                return userfirstname;
-            }
-            set
-            {
-                userfirstname = value;
-            }
-        }
+        public string Userfirstname { get; set; }
 
-        public string Usermiddlename
-        {
-            get
-            {
-                return usermiddlename;
-            }
-            set
-            {
-                usermiddlename = value;
-            }
-        }
+        public string Usermiddlename { get; set; }
 
-        public string Userlastname
-        {
-            get
-            {
-                return userlastname;
-            }
-            set
-            {
-                userlastname = value;
-            }
-        }
+        public string Userlastname { get; set; }
 
-        public string Usernickname
-        {
-            get
-            {
-                return usernickname;
-            }
-            set
-            {
-                usernickname = value;
-            }
-        }
+        public string Usernickname { get; set; }
 
-        public string Usertitle
-        {
-            get
-            {
-                return usertitle;
-            }
-            set
-            {
-                usertitle = value;
-            }
-        }
+        public string Usertitle { get; set; }
 
-        public string Usercompany
-        {
-            get
-            {
-                return usercompany;
-            }
-            set
-            {
-                usercompany = value;
-            }
-        }
+        public string Usercompany { get; set; }
 
-        public string Useraddress
-        {
-            get
-            {
-                return useraddress;
-            }
-            set
-            {
-                useraddress = value;
-            }
-        }
+        public string Useraddress { get; set; }
 
-        public string Userhome
-        {
-            get
-            {
-                return userhome;
-            }
-            set
-            {
-                userhome = value;
-            }
-        }
+        public string Userhome { get; set; }
 
-        public string Usermobile
-        {
-            get
-            {
-                return usermobile;
-            }
-            set
-            {
-                usermobile = value;
-            }
-        }
+        public string Usermobile { get; set; }
 
-        public string Userwork
-        {
-            get
-            {
-                return userwork;
-            }
-            set
-            {
-                userwork = value;
-            }
-        }
+        public string Userwork { get; set; }
 
-        public string Userfax
-        {
-            get
-            {
-                return userfax;
-            }
-            set
-            {
-                userfax = value;
-            }
-        }
+        public string Userfax { get; set; }
 
-        public string Useremail
-        {
-            get
-            {
-                return useremail;
-            }
-            set
-            {
-                useremail = value;
-            }
-        }
+        public string Useremail { get; set; }
 
-        public string Useremail2
-        {
-            get
-            {
-                return useremail2;
-            }
-            set
-            {
-                useremail2 = value;
-            }
-        }
+        public string Useremail2 { get; set; }
 
-        public string Useremail3
-        {
-            get
-            {
-                return useremail3;
-            }
-            set
-            {
-                useremail3 = value;
-            }
-        }
+        public string Useremail3 { get; set; }
 
-        public string Userhomepage
-        {
-            get
-            {
-                return userhomepage;
-            }
-            set
-            {
-                userhomepage = value;
-            }
-        }
+        public string Userhomepage { get; set; }
 
-        public string Userbyear
-        {
-            get
-            {
-                return userbyear;
-            }
-            set
-            {
-                userbyear = value;
-            }
-        }
+        public string Userbyear { get; set; }
 
-        public string Userayear
-        {
-            get
-            {
-                return userayear;
-            }
-            set
-            {
-                userayear = value;
-            }
-        }
+        public string Userayear { get; set; }
 
-        public string Useraddress2
-        {
-            get
-            {
-                return useraddress2;
-            }
-            set
-            {
-                useraddress2 = value;
-            }
-        }
+        public string Useraddress2 { get; set; }
 
-        public string Userphone2
-        {
-            get
-            {
-                return userphone2;
-            }
-            set
-            {
-                userphone2 = value;
-            }
-        }
+        public string Userphone2 { get; set; }
 
-        public string Usernotes
-        {
-            get
-            {
-                return usernotes;
-            }
-            set
-            {
-                usernotes = value;
-            }
-        }
+        public string Usernotes { get; set; }
+
+        public string Id { get; set; }
     }
 }
