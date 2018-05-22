@@ -29,6 +29,8 @@ namespace WebAddressbookTests
 
             applicationManager.Contacts.Remove(0);
 
+            Assert.AreEqual(oldContacts.Count - 1, applicationManager.Contacts.GetContactCount());
+
             List<ContactData> newContacts = applicationManager.Contacts.GetContactList();
             oldContacts.RemoveAt(0);
             oldContacts.Sort();
