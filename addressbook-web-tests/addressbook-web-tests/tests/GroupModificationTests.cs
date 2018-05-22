@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
@@ -32,7 +33,15 @@ namespace WebAddressbookTests
             newData.Header = "H_modify";
             newData.Footer = "F_modify";
 
-            applicationManager.Groups.Modify(1, newData);
+            List<GroupData> oldGroups = applicationManager.Groups.GetGroupList();
+
+            applicationManager.Groups.Modify(0, newData);
+
+            List<GroupData> newGroups = applicationManager.Groups.GetGroupList();
+            oldGroups[0].Name = newData.Name;
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }

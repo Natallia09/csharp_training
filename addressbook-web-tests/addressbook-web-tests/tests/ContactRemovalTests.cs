@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
@@ -24,7 +25,15 @@ namespace WebAddressbookTests
                 applicationManager.Contacts.Create(contact);
             }
 
-            applicationManager.Contacts.Remove(1);
+            List<ContactData> oldContacts = applicationManager.Contacts.GetContactList();
+
+            applicationManager.Contacts.Remove(0);
+
+            List<ContactData> newContacts = applicationManager.Contacts.GetContactList();
+            oldContacts.RemoveAt(0);
+            oldContacts.Sort();
+            newContacts.Sort();
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }

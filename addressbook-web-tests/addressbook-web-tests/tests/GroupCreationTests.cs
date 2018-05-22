@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -16,7 +17,15 @@ namespace WebAddressbookTests
             group.Header = "H_new";
             group.Footer = "F_new";
 
+            List<GroupData> oldGroups = applicationManager.Groups.GetGroupList();
+
             applicationManager.Groups.Create(group);
+
+            List<GroupData> newGroups = applicationManager.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
         [Test]
@@ -26,7 +35,15 @@ namespace WebAddressbookTests
             group.Header = "";
             group.Footer = "";
 
+            List<GroupData> oldGroups = applicationManager.Groups.GetGroupList();
+
             applicationManager.Groups.Create(group);
+
+            List<GroupData> newGroups = applicationManager.Groups.GetGroupList();
+            oldGroups.Add(group);
+            oldGroups.Sort();
+            newGroups.Sort();
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
