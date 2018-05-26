@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
+
+        private string userallphones;
+        private string userallemails;
+
         public ContactData(string userlastname, string userfirstname)
         {
             Userfirstname = userfirstname;
@@ -93,5 +98,62 @@ namespace WebAddressbookTests
         public string Usernotes { get; set; }
 
         public string Id { get; set; }
+
+        public string Userallphones
+        {
+            get
+            {
+                if (userallphones != null)
+                {
+                    return userallphones;
+                }
+                else
+                {
+                    return (CleanUpUserPhone(Userhome) + CleanUpUserPhone(Usermobile) + CleanUpUserPhone(Userwork)).Trim();
+                }
+            }
+            set
+            {
+                userallphones = value;
+            }
+        
+        }
+
+        private string CleanUpUserPhone(string phone)
+        {
+            if (phone == null || phone == "")
+            {
+                return "";
+            }
+            return Regex.Replace(phone,"[-() ]", "") + "\r\n";
+        }
+
+        public string Userallemails
+        {
+            get
+            {
+                if (userallemails != null)
+                {
+                    return userallemails;
+                }
+                else
+                {
+                    return (CleanUpUserEmail(Useremail) + CleanUpUserEmail(Useremail2) + CleanUpUserEmail(Useremail3)).Trim();
+                }
+            }
+            set
+            {
+                userallemails = value;
+            }
+        }
+
+        private string CleanUpUserEmail(string email)
+        {
+            if (email == null || email == "")
+            {
+                return "";
+            }
+            return Regex.Replace(email, "[-() ]", "") + "\r\n";
+        }
     }
 }

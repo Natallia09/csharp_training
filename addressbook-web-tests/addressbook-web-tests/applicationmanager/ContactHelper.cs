@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
@@ -26,11 +27,11 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(int p, ContactData newData)
+        public ContactHelper Modify(int index, ContactData newData)
         {
             manager.Navigator.GoToContactsPage();
-            SelectContact(p);
-            InitContactModification();
+            SelectContact(index);
+            InitContactModification(index);
             FillContactForm(newData);
             SubmitContactModification();
             ReturnsToContactsPage();
@@ -104,9 +105,11 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper InitContactModification()
+        public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.CssSelector("img[title='Edit']")).Click();
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[7]
+                .FindElement(By.TagName("a")).Click();
             return this;
         }
 
@@ -140,6 +143,64 @@ namespace WebAddressbookTests
         public int GetContactCount()
         {
             return driver.FindElements(By.Name("entry")).Count;
+        }
+
+        public ContactData GetContactInformationFromTable(int index)
+        {
+            manager.Navigator.GoToHomePage();
+
+            IList<IWebElement> cells = driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"));
+            string userlastname = cells[1].Text;
+            string userfirstname = cells[2].Text;
+            string useraddress = cells[3].Text;
+            string userallphones = cells[5].Text;
+            string userallemails = cells[4].Text;
+
+            return new ContactData(userfirstname, userlastname)
+            {
+                Useraddress = useraddress,
+                Userallphones = userallphones,
+                Userallemails = userallemails,
+
+            };
+        }
+
+        public ContactData GetContactInformationFromEditForm(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            InitContactModification(0);
+
+            string userfirstname = driver.FindElement(By.Name("firstname")).GetAttribute("value");
+            string userlastname = driver.FindElement(By.Name("lastname")).GetAttribute("value");
+            string useraddress = driver.FindElement(By.Name("address")).GetAttribute("value");
+
+            string userhome = driver.FindElement(By.Name("home")).GetAttribute("value");
+            string usermobile = driver.FindElement(By.Name("mobile")).GetAttribute("value");
+            string userwork = driver.FindElement(By.Name("work")).GetAttribute("value");
+
+            string useremail = driver.FindElement(By.Name("email")).GetAttribute("value");
+            string useremail2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
+            string useremail3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
+
+            return new ContactData(userfirstname, userlastname)
+            {
+                Useraddress = useraddress,
+                Userhome = userhome,
+                Usermobile = usermobile,
+                Userwork = userwork,
+                Useremail = useremail,
+                Useremail2 = useremail2,
+                Useremail3 = useremail3
+            };
+        }
+
+        public int GetNumberOfSearchResults()
+        {
+            manager.Navigator.GoToHomePage();
+            string text = driver.FindElement(By.TagName("Label")).Text;
+            Match m = new Regex(@"\d+").Match(text);
+            return Int32.Parse(m.Value);
         }
     }
 }
