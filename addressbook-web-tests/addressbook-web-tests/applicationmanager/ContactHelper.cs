@@ -113,6 +113,14 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper SelectContactDetails(int index)
+        {
+            driver.FindElements(By.Name("entry"))[index]
+                .FindElements(By.TagName("td"))[6]
+                .FindElement(By.TagName("a")).Click();
+            return this;
+        }
+
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
@@ -162,7 +170,25 @@ namespace WebAddressbookTests
                 Useraddress = useraddress,
                 Userallphones = userallphones,
                 Userallemails = userallemails,
+            };
+        }
 
+        public ContactData GetContactInformationFromDetails(int index)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContactDetails(0);
+
+            string[] userfirstlastname = driver.FindElement(By.CssSelector("div#content"))
+             .FindElement(By.TagName("b")).Text.Split(' ');
+
+            string userfirstname = userfirstlastname[0];
+            string userlastname = userfirstlastname[1];
+
+            string alldetails = driver.FindElement(By.CssSelector("div#content")).Text;
+
+            return new ContactData(userfirstname, userlastname)
+            {
+                AllDetails = alldetails
             };
         }
 
@@ -194,13 +220,6 @@ namespace WebAddressbookTests
                 Useremail3 = useremail3
             };
         }
-
-        public int GetNumberOfSearchResults()
-        {
-            manager.Navigator.GoToHomePage();
-            string text = driver.FindElement(By.TagName("Label")).Text;
-            Match m = new Regex(@"\d+").Match(text);
-            return Int32.Parse(m.Value);
-        }
     }
 }
+

@@ -12,6 +12,7 @@ namespace WebAddressbookTests
 
         private string userallphones;
         private string userallemails;
+        private string alldetails;
 
         public ContactData(string userlastname, string userfirstname)
         {
@@ -21,7 +22,7 @@ namespace WebAddressbookTests
 
         public bool Equals(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (other is null)
             {
                 return false;
             }
@@ -45,7 +46,7 @@ namespace WebAddressbookTests
 
         public int CompareTo(ContactData other)
         {
-            if (Object.ReferenceEquals(other, null))
+            if (other is null)
             {
                 return 1;
             }
@@ -99,6 +100,7 @@ namespace WebAddressbookTests
 
         public string Id { get; set; }
 
+
         public string Userallphones
         {
             get
@@ -116,7 +118,6 @@ namespace WebAddressbookTests
             {
                 userallphones = value;
             }
-        
         }
 
         private string CleanUpUserPhone(string phone)
@@ -154,6 +155,65 @@ namespace WebAddressbookTests
                 return "";
             }
             return Regex.Replace(email, "[-() ]", "") + "\r\n";
+        }
+
+        public string AllDetails
+        {
+            get
+            {
+                alldetails = Userlastname + " " + Userfirstname;
+
+                if (alldetails != null)
+                {
+                    return alldetails;
+                }
+                else
+                {
+
+                    if (Useraddress != "" || Useraddress != null)
+                    {
+                        alldetails = alldetails + "\r\n" + Useraddress;
+                    }
+                    alldetails = alldetails + "\r\n";
+
+                    if (Userhome != "" || Userhome != null)
+                    {
+                        alldetails = alldetails + "\r\n" + ("H: " + Userhome);
+                    }
+
+                    if (Usermobile != "" || Usermobile != null)
+                    {
+                        alldetails = alldetails + "\r\n" + ("M: " + Usermobile);
+                    }
+
+                    if (Userwork != "" || Userwork != null)
+                    {
+                        alldetails = alldetails + "\r\n" + ("W: " + Userwork);
+                    }
+                    alldetails = alldetails + "\r\n";
+
+                    if (Useremail != "" || Useremail != null)
+                    {
+                        alldetails = alldetails + "\r\n" + Useremail;
+                    }
+
+                    if (Useremail2 != "" || Useremail2 != null)
+                    { 
+                        alldetails = alldetails + "\r\n" + Useremail2;
+                    }
+
+                    if (Useremail3 != "" || Useremail3 != null)
+                    {
+                        alldetails = alldetails + "\r\n" + Useremail3;
+                    }
+
+                }
+                return alldetails;
+            }
+            set
+            {
+                alldetails = value;
+            }
         }
     }
 }
