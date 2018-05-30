@@ -179,7 +179,7 @@ namespace WebAddressbookTests
             SelectContactDetails(0);
 
             string[] userfirstlastname = driver.FindElement(By.CssSelector("div#content"))
-             .FindElement(By.TagName("b")).Text.Split(' ');
+            .FindElement(By.TagName("b")).Text.Split(' ');
 
             string userfirstname = userfirstlastname[0];
             string userlastname = userfirstlastname[1];
@@ -188,7 +188,7 @@ namespace WebAddressbookTests
 
             return new ContactData(userfirstname, userlastname)
             {
-                AllDetails = alldetails
+               AllDetails = alldetails,
             };
         }
 

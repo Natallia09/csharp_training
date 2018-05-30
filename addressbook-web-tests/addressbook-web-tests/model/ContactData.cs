@@ -20,6 +20,8 @@ namespace WebAddressbookTests
             Userlastname = userlastname;
         }
 
+        public ContactData() { }
+
         public bool Equals(ContactData other)
         {
             if (other is null)
