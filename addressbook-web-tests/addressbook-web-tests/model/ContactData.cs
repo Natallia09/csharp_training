@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using LinqToDB.Mapping;
 
 namespace WebAddressbookTests
 {
+    [Table(Name = "addressbook")]
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
 
@@ -60,46 +62,67 @@ namespace WebAddressbookTests
             return Userlastname.CompareTo(other.Userlastname);
         }
 
+        [Column(Name = "firstname")]
         public string Userfirstname { get; set; }
 
+        [Column(Name = "middlename")]
         public string Usermiddlename { get; set; }
 
+        [Column(Name = "lastname")]
         public string Userlastname { get; set; }
 
+        [Column(Name = "nickname")]
         public string Usernickname { get; set; }
 
+        [Column(Name = "title")]
         public string Usertitle { get; set; }
 
+        [Column(Name = "company")]
         public string Usercompany { get; set; }
 
+        [Column(Name = "address")]
         public string Useraddress { get; set; }
 
+        [Column(Name = "home")]
         public string Userhome { get; set; }
 
+        [Column(Name = "mobile")]
         public string Usermobile { get; set; }
 
+        [Column(Name = "work")]
         public string Userwork { get; set; }
 
+        [Column(Name = "fax")]
         public string Userfax { get; set; }
 
+        [Column(Name = "email")]
         public string Useremail { get; set; }
 
+        [Column(Name = "email2")]
         public string Useremail2 { get; set; }
 
+        [Column(Name = "email3")]
         public string Useremail3 { get; set; }
 
+        [Column(Name = "homepage")]
         public string Userhomepage { get; set; }
 
+        [Column(Name = "byear")]
         public string Userbyear { get; set; }
 
+        [Column(Name = "ayear")]
         public string Userayear { get; set; }
 
+        [Column(Name = "address2")]
         public string Useraddress2 { get; set; }
 
+        [Column(Name = "phone2")]
         public string Userphone2 { get; set; }
 
+        [Column(Name = "notes")]
         public string Usernotes { get; set; }
 
+        [Column(Name = "id"), PrimaryKey, Identity]
         public string Id { get; set; }
 
 
