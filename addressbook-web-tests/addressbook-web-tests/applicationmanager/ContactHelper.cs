@@ -27,6 +27,32 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public void AddContactToGroup(ContactData contact, GroupData group)
+        {
+            manager.Navigator.GoToContactsPage();
+            ClearGroupFilter();
+            SelectContact(contact.Id);
+            SelectGroupToAdd(group.Name);
+            CommitAddingContactToGroup();
+            new WebDriverWait(driver, TimeSpan.FromSeconds(10))
+                .Until(d => d.FindElements(By.CssSelector("div.msgbox")).Count > 0);
+        }
+
+        public void CommitAddingContactToGroup()
+        {
+            driver.FindElement(By.Name("add")).Click();
+        }
+
+        public void SelectGroupToAdd(string name)
+        {
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        public void ClearGroupFilter()
+        {
+            new SelectElement(driver.FindElement(By.Name("group"))).SelectByText("[all]");
+        }
+
         public ContactHelper Modify(int index, ContactData newData)
         {
             manager.Navigator.GoToContactsPage();
@@ -38,11 +64,10 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(ContactData oldContacts, ContactData newContacts)
+        public ContactHelper Modify(ContactData contact, ContactData newContacts)
         {
             manager.Navigator.GoToContactsPage();
-            SelectContact(oldContacts.Id);
-            //InitContactModification(index);
+            InitContactModification(contact);
             FillContactForm(newContacts);
             SubmitContactModification();
             ReturnsToContactsPage();
@@ -111,10 +136,9 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SelectContact(String id)
+        public ContactHelper SelectContact(string contactId)
         {
-            //driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
-            driver.FindElement(By.Id(id));
+            driver.FindElement(By.Id(contactId)).Click();
             return this;
         }
 
@@ -137,6 +161,12 @@ namespace WebAddressbookTests
             driver.FindElements(By.Name("entry"))[index]
                 .FindElements(By.TagName("td"))[7]
                 .FindElement(By.TagName("a")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification(ContactData contact)
+        {
+            driver.FindElement(By.CssSelector("img[alt=\"Edit\"]")).Click();
             return this;
         }
 

@@ -60,10 +60,12 @@ namespace WebAddressbookTests
 
         [Test, TestCaseSource("ContactDataFromXmlFile")]
         public void ContactCreationTest(ContactData contact)
+
         {
             List<ContactData> oldContacts = ContactData.GetAll();
 
             applicationManager.Contacts.Create(contact);
+            applicationManager.Navigator.GoToContactsPage();
 
             Assert.AreEqual(oldContacts.Count + 1, applicationManager.Contacts.GetContactCount());
 
@@ -74,20 +76,6 @@ namespace WebAddressbookTests
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);
-        }
-
-        [Test]
-        public void TestContactDBConnectivity()
-        {
-            DateTime start = DateTime.Now;
-            List<ContactData> fromUi = applicationManager.Contacts.GetContactList();
-            DateTime end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
-
-            start = DateTime.Now;
-            List<ContactData> fromDb = ContactData.GetAll();
-            end = DateTime.Now;
-            System.Console.Out.WriteLine(end.Subtract(start));
         }
     }
 }
