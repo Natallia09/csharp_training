@@ -9,7 +9,7 @@ using OpenQA.Selenium;
 namespace WebAddressbookTests
 {
     [TestFixture]
-    public class ContactModificationTests : AuthTestBase
+    public class ContactModificationTests : ContactTestBase
     {
         [Test]
         public void ContactModificationTest()
@@ -27,15 +27,16 @@ namespace WebAddressbookTests
 
             ContactData newData = new ContactData("ULN_modify", "UFN_modify");
 
-            List<ContactData> oldContacts = applicationManager.Contacts.GetContactList();
+            List<ContactData> oldContacts = ContactData.GetAll();
+            ContactData oldData = oldContacts[0];
 
-            applicationManager.Contacts.Modify(0, newData);
+            applicationManager.Contacts.Modify(oldData, newData);
 
             Assert.AreEqual(oldContacts.Count, applicationManager.Contacts.GetContactCount());
 
-            List<ContactData> newContacts = applicationManager.Contacts.GetContactList();
-            oldContacts[0].Userfirstname = newData.Userfirstname;
-            oldContacts[0].Userlastname = newData.Userlastname;
+            List<ContactData> newContacts = ContactData.GetAll();
+            oldData.Userfirstname = newData.Userfirstname;
+            oldData.Userlastname = newData.Userlastname;
             oldContacts.Sort();
             newContacts.Sort();
             Assert.AreEqual(oldContacts, newContacts);

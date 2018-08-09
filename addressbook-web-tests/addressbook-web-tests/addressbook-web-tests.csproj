@@ -92,11 +92,13 @@
     <Compile Include="tests\ContactRemovalTests.cs" />
     <Compile Include="model\GroupData.cs" />
     <Compile Include="applicationmanager\GroupHelper.cs" />
+    <Compile Include="tests\ContactTestBase.cs" />
     <Compile Include="tests\GroupModificationTests.cs" />
     <Compile Include="tests\GroupRemovalTests.cs" />
     <Compile Include="applicationmanager\HelperBase.cs" />
     <Compile Include="applicationmanager\LoginHelper.cs" />
     <Compile Include="applicationmanager\NavigationHelper.cs" />
+    <Compile Include="tests\GroupTestBase.cs" />
     <Compile Include="tests\LoginTests.cs" />
     <Compile Include="tests\TestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

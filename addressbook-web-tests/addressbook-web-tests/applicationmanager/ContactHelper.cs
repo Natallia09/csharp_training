@@ -38,10 +38,30 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper Modify(ContactData oldContacts, ContactData newContacts)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(oldContacts.Id);
+            //InitContactModification(index);
+            FillContactForm(newContacts);
+            SubmitContactModification();
+            ReturnsToContactsPage();
+            return this;
+        }
+
         public ContactHelper Remove(int p)
         {
             manager.Navigator.GoToContactsPage();
             SelectContact(p);
+            RemoveContact();
+            ReturnsToContactsPage();
+            return this;
+        }
+
+        public ContactHelper Remove(ContactData contact)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(contact.Id);
             RemoveContact();
             ReturnsToContactsPage();
             return this;
@@ -88,6 +108,13 @@ namespace WebAddressbookTests
         public ContactHelper SelectContact(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper SelectContact(String id)
+        {
+            //driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])")).Click();
+            driver.FindElement(By.Id(id));
             return this;
         }
 
