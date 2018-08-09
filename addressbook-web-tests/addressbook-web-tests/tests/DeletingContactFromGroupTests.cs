@@ -20,11 +20,11 @@ namespace WebAddressbookTests
             applicationManager.Contacts.DeleteContactFromGroup(contact, group);
 
             List<ContactData> newList = group.GetContacts();
-            oldList.Remove(contact);
+            //oldList.Remove(contact);
             newList.Sort();
             oldList.Sort();
 
-            Assert.AreEqual(oldList, newList);
+            Assert.AreEqual(oldList.Count-1, newList.Count);
         }
     }
 }
