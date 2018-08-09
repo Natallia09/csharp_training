@@ -31,7 +31,7 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToContactsPage();
             ClearGroupFilter();
-            SelectContact(contact.Id);
+            SelectContact_(contact.Id);
             SelectGroupToAdd(group.Name);
             CommitAddingContactToGroup();
             new WebDriverWait(driver, TimeSpan.FromSeconds(10))
@@ -46,6 +46,12 @@ namespace WebAddressbookTests
         public void SelectGroupToAdd(string name)
         {
             new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText(name);
+        }
+
+        public ContactHelper SelectContact_(String id)
+        {
+            driver.FindElement(By.Id(id)).Click();
+            return this;
         }
 
         public void ClearGroupFilter()
@@ -64,10 +70,10 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper Modify(ContactData contact, ContactData newContacts)
+        public ContactHelper Modify(ContactData oldContacts, ContactData newContacts)
         {
             manager.Navigator.GoToContactsPage();
-            InitContactModification(contact);
+            SelectContact(oldContacts.Id);
             FillContactForm(newContacts);
             SubmitContactModification();
             ReturnsToContactsPage();
@@ -136,9 +142,10 @@ namespace WebAddressbookTests
             return this;
         }
 
-        public ContactHelper SelectContact(string contactId)
+        public ContactHelper SelectContact(String id)
         {
-            driver.FindElement(By.Id(contactId)).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @value='" + id + "'])"))
+                .FindElement(By.XPath("(//img[@alt='Edit'])")).Click();
             return this;
         }
 
